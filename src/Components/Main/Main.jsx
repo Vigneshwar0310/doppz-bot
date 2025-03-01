@@ -243,11 +243,11 @@ const Main = () => {
   return (
     <div className="main flex-1 relative h-screen flex flex-col items-center overflow-hidden bg-[#121418] text-[#e6e9ef]">
       {/* Main content area with flex layout */}
-      <div className="w-full h-full flex flex-col max-w-[900px] px-4">
+      <div className="w-full h-full flex flex-col max-w-[900px] px-2 sm:px-4">
         {/* Chat Area - Takes up most of the screen space */}
         <div
           ref={chatContainerRef}
-          className="chat-container flex-grow overflow-y-auto py-4 mb-4"
+          className="chat-container flex-grow overflow-y-auto py-2 sm:py-4 mb-2 sm:mb-4"
         >
           <AnimatePresence mode="wait">
             {!showResult ? (
@@ -257,13 +257,13 @@ const Main = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="welcome-content h-full flex flex-col justify-center"
+                className="welcome-content h-full flex flex-col justify-center items-center"
               >
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="greet mb-10 text-[42px] md:text-[56px] font-semibold p-[20px] text-center"
+                  className="greet mb-6 sm:mb-10 text-[38px] sm:text-[42px] md:text-[56px] font-semibold p-[10px] sm:p-[20px] text-center max-w-[90%] sm:max-w-full"
                 >
                   <p>
                     <span className="bg-gradient-to-r from-[#2b7cd3] to-[#1f6feb] bg-clip-text text-transparent">
@@ -273,7 +273,8 @@ const Main = () => {
                   <p className="text-[#e6e9ef]">How Can I Help You?</p>
                 </motion.div>
 
-                <div className="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-[20px]">
+                {/* Cards - Hidden on mobile */}
+                <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 p-[20px] w-full">
                   {recentSearches.slice(0, 4).map((text, index) => (
                     <motion.div
                       key={index}
@@ -291,7 +292,7 @@ const Main = () => {
                       }}
                     >
                       <div className="flex justify-between items-start">
-                        <p className="text-[#e6e9ef] pr-6">{text}</p>
+                        <p className="text-[#e6e9ef] text-base pr-6">{text}</p>
                         <motion.div
                           className="p-1 hover:bg-[#22252d] rounded-full"
                           whileHover={{ scale: 1.1 }}
@@ -321,26 +322,30 @@ const Main = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="response-container space-y-4"
+                className="response-container space-y-3 sm:space-y-4"
               >
                 {/* Input display - Always visible */}
                 <motion.div
-                  className="input-display p-4 bg-[#1a1d23] rounded-lg border border-[#2c303a] shadow-md"
+                  className="input-display p-3 sm:p-4 bg-[#1a1d23] rounded-lg border border-[#2c303a] shadow-md"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                 >
                   <div className="flex items-center">
-                    <div className="w-8 h-8 min-w-8 bg-[#2b7cd3] rounded-full flex items-center justify-center mr-3">
-                      <span className="text-white font-bold">You</span>
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 min-w-[24px] sm:min-w-[32px] bg-[#2b7cd3] rounded-full flex items-center justify-center mr-2 sm:mr-3">
+                      <span className="text-white text-sm sm:text-base font-bold">
+                        You
+                      </span>
                     </div>
-                    <p className="text-[#e6e9ef] font-medium">{display}</p>
+                    <p className="text-[#e6e9ef] text-sm sm:text-base font-medium">
+                      {display}
+                    </p>
                   </div>
                 </motion.div>
 
-                {/* AI Response - With enhanced styling and bullet points */}
+                {/* AI Response */}
                 <motion.div
-                  className="ai-response bg-[#1a1d23] rounded-lg p-4 shadow-lg border border-[#2c303a]"
+                  className="ai-response bg-[#1a1d23] rounded-lg p-3 sm:p-4 shadow-lg border border-[#2c303a]"
                   initial={{ scale: 0.98, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{
@@ -350,22 +355,26 @@ const Main = () => {
                     delay: 0.2,
                   }}
                 >
-                  <div className="flex items-center mb-3">
-                    <div className="w-8 h-8 min-w-8 bg-gradient-to-r from-[#2b7cd3] to-[#1f6feb] rounded-full flex items-center justify-center mr-3">
-                      <span className="text-white font-bold">D</span>
+                  <div className="flex items-center mb-2 sm:mb-3">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 min-w-[24px] sm:min-w-[32px] bg-gradient-to-r from-[#2b7cd3] to-[#1f6feb] rounded-full flex items-center justify-center mr-2 sm:mr-3">
+                      <span className="text-white text-sm sm:text-base font-bold">
+                        D
+                      </span>
                     </div>
-                    <p className="text-[#a0a7b5] font-medium">Doppler AI</p>
+                    <p className="text-[#a0a7b5] text-sm sm:text-base font-medium">
+                      Doppler AI
+                    </p>
                   </div>
 
                   {loading ? (
-                    <div className="flex space-x-1 ml-11">
+                    <div className="flex space-x-1 ml-8 sm:ml-11">
                       <motion.span
-                        className="h-2 w-2 bg-[#2b7cd3] rounded-full"
+                        className="h-1.5 sm:h-2 w-1.5 sm:w-2 bg-[#2b7cd3] rounded-full"
                         animate={{ scale: [1, 1.5, 1] }}
                         transition={{ duration: 1, repeat: Infinity, delay: 0 }}
                       />
                       <motion.span
-                        className="h-2 w-2 bg-[#2b7cd3] rounded-full"
+                        className="h-1.5 sm:h-2 w-1.5 sm:w-2 bg-[#2b7cd3] rounded-full"
                         animate={{ scale: [1, 1.5, 1] }}
                         transition={{
                           duration: 1,
@@ -374,7 +383,7 @@ const Main = () => {
                         }}
                       />
                       <motion.span
-                        className="h-2 w-2 bg-[#2b7cd3] rounded-full"
+                        className="h-1.5 sm:h-2 w-1.5 sm:w-2 bg-[#2b7cd3] rounded-full"
                         animate={{ scale: [1, 1.5, 1] }}
                         transition={{
                           duration: 1,
@@ -384,7 +393,7 @@ const Main = () => {
                       />
                     </div>
                   ) : (
-                    <div className="text-[#e6e9ef] text-lg leading-relaxed ml-11 whitespace-pre-line">
+                    <div className="text-[#e6e9ef] text-sm sm:text-lg leading-relaxed ml-8 sm:ml-11 whitespace-pre-line">
                       {displayedResponse}
                     </div>
                   )}
@@ -394,22 +403,21 @@ const Main = () => {
           </AnimatePresence>
         </div>
 
-        {/* Input Area - Fixed at the bottom */}
-        <div className="input-container pb-8 w-full">
+        {/* Input Area */}
+        <div className="input-container pb-4 sm:pb-8 w-full">
           <motion.div
             className={`gemini-input flex items-center bg-[#1a1d23] border ${
               isInputFocused
                 ? "border-[#2b7cd3] shadow-lg"
                 : "border-[#2c303a] shadow-md"
-            } rounded-2xl transition-all duration-200`}
+            } rounded-xl sm:rounded-2xl transition-all duration-200`}
             animate={{
               boxShadow: isInputFocused
                 ? "0 4px 12px rgba(43, 124, 211, 0.3)"
                 : "0 1px 3px rgba(0, 0, 0, 0.3)",
             }}
           >
-            {/* Input field */}
-            <div className="flex-grow px-4 flex items-center">
+            <div className="flex-grow px-3 sm:px-4 flex items-center">
               <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -418,9 +426,9 @@ const Main = () => {
                 onBlur={() => setIsInputFocused(false)}
                 placeholder="Ask me anything..."
                 rows={1}
-                className="w-full py-5 text-lg resize-none outline-none bg-transparent text-[#e6e9ef] placeholder-[#a0a7b5]"
+                className="w-full py-3 sm:py-5 text-base sm:text-lg resize-none outline-none bg-transparent text-[#e6e9ef] placeholder-[#a0a7b5]"
                 style={{
-                  minHeight: "56px",
+                  minHeight: "48px",
                   maxHeight: "150px",
                   overflow: "auto",
                   lineHeight: "1.5",
@@ -428,13 +436,12 @@ const Main = () => {
               />
             </div>
 
-            {/* Send button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               disabled={!input.trim()}
               onClick={handleSend}
-              className={`flex items-center justify-center w-12 h-12 rounded-full mx-2 ${
+              className={`flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full mx-2 ${
                 input.trim()
                   ? "bg-[#2b7cd3] hover:bg-[#1f6feb]"
                   : "bg-[#22252d] cursor-not-allowed"
@@ -442,12 +449,12 @@ const Main = () => {
             >
               <IoSendSharp
                 className={input.trim() ? "text-white" : "text-[#a0a7b5]"}
-                size={20}
+                size={18}
               />
             </motion.button>
           </motion.div>
 
-          <p className="text-xs text-[#a0a7b5] text-center mt-3">
+          <p className="text-[10px] sm:text-xs text-[#a0a7b5] text-center mt-2 sm:mt-3">
             Doppler AI may take a moment to respond....
           </p>
         </div>
