@@ -267,10 +267,10 @@ const Main = () => {
                 >
                   <p>
                     <span className="bg-gradient-to-r from-[#2b7cd3] to-[#1f6feb] bg-clip-text text-transparent">
-                      Vanga, Thambi...
+                      Hello, Doppler...
                     </span>
                   </p>
-                  <p className="text-[#e6e9ef]">Enna Venum Kelunga?</p>
+                  <p className="text-[#e6e9ef]">How Can I Help You?</p>
                 </motion.div>
 
                 <div className="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-[20px]">
