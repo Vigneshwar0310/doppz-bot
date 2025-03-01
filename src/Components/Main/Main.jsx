@@ -241,13 +241,13 @@ const Main = () => {
   };
 
   return (
-    <div className="main flex-1 relative h-screen flex flex-col items-center overflow-hidden bg-[#121418] text-[#e6e9ef]">
+    <div className="main flex-1 relative h-screen flex flex-col items-center overflow-hidden bg-[#121418] text-[#e6e9ef] sm:pt-0 pt-14">
       {/* Main content area with flex layout */}
       <div className="w-full h-full flex flex-col max-w-[900px] px-2 sm:px-4">
         {/* Chat Area - Takes up most of the screen space */}
         <div
           ref={chatContainerRef}
-          className="chat-container flex-grow overflow-y-auto py-2 sm:py-4 mb-2 sm:mb-4"
+          className="chat-container flex-grow overflow-y-auto py-2 sm:py-4 mb-2 sm:mb-4 h-[calc(100vh-180px)] sm:h-auto"
         >
           <AnimatePresence mode="wait">
             {!showResult ? (
@@ -263,14 +263,16 @@ const Main = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="greet mb-6 sm:mb-10 text-[38px] sm:text-[42px] md:text-[56px] font-semibold p-[10px] sm:p-[20px] text-center max-w-[90%] sm:max-w-full"
+                  className="greet mb-4 sm:mb-10 text-[24px] sm:text-[42px] md:text-[56px] font-semibold p-[10px] sm:p-[20px] text-center max-w-[90%] sm:max-w-full"
                 >
                   <p>
                     <span className="bg-gradient-to-r from-[#2b7cd3] to-[#1f6feb] bg-clip-text text-transparent">
                       Hello, Doppler...
                     </span>
                   </p>
-                  <p className="text-[#e6e9ef]">How Can I Help You?</p>
+                  <p className="text-[#e6e9ef] text-[20px] sm:text-[42px] md:text-[56px]">
+                    How Can I Help You?
+                  </p>
                 </motion.div>
 
                 {/* Cards - Hidden on mobile */}
